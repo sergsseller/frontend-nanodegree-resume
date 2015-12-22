@@ -1,0 +1,68 @@
+
+$("#main").append(work["jobs"]);
+$("#main").append(education.schools);
+
+
+for (job in work.jobs) {
+	$("#workExperience").append(HTMLworkStart);
+	var formattedEmployer = HTMLworkEmployer.replace
+	("%data%, work.jobs[job].employer");
+	var formatted.Title = HTMLworkTitle.replace
+	("%data%, work.jobs[job].title");
+	var formattedEmployerTitle = formattedEmployer + formatted.Title;
+
+	$(".work-entry:last").append(formattedEmployerTitle);
+};
+
+
+var projects = {
+	"projects": [
+		{
+			"title": "Portfolio Page",
+			"dates": "9/2015 - 10/2015",
+			"description": "Created a front page for a portfolio site using Bootstrap CSS frameowrk",
+			"images": ["N/A"]
+		},
+		{
+			"title": "Resume Page",
+			"dates": "10/2015 - 10/2015",
+			"description": "Created Resume Page using JavaScript",
+			"images": ["N/A"]
+		}
+	]
+}
+
+
+var education = {
+	"schools": [
+		{
+			"name": "CUNY Baruch College",
+			"city": "New York City, NY",
+			"degree": "Bachelor Business Administration",
+			"majors": "Finance",
+			"dates": 2011,
+			"URL": "www.baruch.cuny.edu"
+
+		},
+		{	"name": "Southern Ural State University",
+			"city": "Chelyabinsk Russia",
+			"degree": "Incomplete",
+			"majors": "English",
+			"dates": 2004,
+			"URL": "www.susu.ac.ru"
+		} 
+	],
+	"online courses": [
+		{
+			"name": "Front-End Wev-Developer Nanodgree",
+			"school": "Udacity",
+			"dates": 2015,
+			"URL": "https://www.udacity.com/course/front-end-web-developer-nanodegree"
+		}
+	]
+}
+
+
+
+ var locations = [];
+    locations.push(work.jobs.location)

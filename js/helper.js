@@ -12,8 +12,9 @@ Cameron Pittman
 These are HTML strings. As part of the course, you'll be using JavaScript functions
 replace the %data% placeholder text you see in them.
 */
+
 var HTMLheaderName = '<h1 id="name">%data%</h1>';
-var HTMLheaderRole = '<span>%data%</span><hr/>';
+var HTMLheaderRole = '<span>%data%</span><hr>';
 
 var HTMLcontactGeneric = '<li class="flex-item"><span class="orange-text">%contact%</span><span class="white-text">%data%</span></li>';
 var HTMLmobile = '<li class="flex-item"><span class="orange-text">mobile</span><span class="white-text">%data%</span></li>';
@@ -106,7 +107,7 @@ function initializeMap() {
   var locations;
 
   var mapOptions = {
-    disableDefaultUI: true
+    disableDefaultUI: false
   };
 
   /* 
@@ -127,18 +128,34 @@ function initializeMap() {
 
     // adds the single location property from bio to the locations array
     locations.push(bio.contacts.location);
-
     // iterates through school locations and appends each location to
+<<<<<<< Updated upstream
+    // the locations array. Note that forEach is used for array iteration
+    // as described in the Udacity FEND Style Guide: 
+    // https://udacity.github.io/frontend-nanodegree-styleguide/javascript.html#for-in-loop
+    education.schools.forEach(function(school){
+      locations.push(school.location);
+    });
+
+||||||| merged common ancestors
     // the locations array
     for (var school in education.schools) {
       locations.push(education.schools[school].location);
     }
 
-    // iterates through work locations and appends each location to
+=======
     // the locations array
-    for (var job in work.jobs) {
-      locations.push(work.jobs[job].location);
+    for (var school in education.schools) {
+      locations.push(education.schools[school].location);
     }
+>>>>>>> Stashed changes
+    // iterates through work locations and appends each location to
+    // the locations array. Note that forEach is used for array iteration
+    // as described in the Udacity FEND Style Guide: 
+    // https://udacity.github.io/frontend-nanodegree-styleguide/javascript.html#for-in-loop
+    work.jobs.forEach(function(job){
+      locations.push(job.location);
+    });
 
     return locations;
   }
@@ -171,7 +188,7 @@ function initializeMap() {
     });
 
     // hmmmm, I wonder what this is about...
-    google.maps.event.addListener(marker, 'click', function() {
+    google.maps.event.addListener(marker, 'click', function() { infoWindow.open(map,marker);
       // your code goes here!
     });
 
@@ -205,17 +222,16 @@ function initializeMap() {
     var service = new google.maps.places.PlacesService(map);
 
     // Iterates through the array of locations, creates a search object for each location
-    for (var place in locations) {
-
+      locations.forEach(function(place){
       // the search request object
       var request = {
-        query: locations[place]
+        query: place
       };
 
       // Actually searches the Google Maps API for location data and runs the callback
       // function with the search results after each search.
       service.textSearch(request, callback);
-    }
+    });
   }
 
   // Sets the boundaries of the map based on pin locations
@@ -224,7 +240,7 @@ function initializeMap() {
   // locations is an array of location strings returned from locationFinder()
   locations = locationFinder();
 
-  // pinPoster(locations) creates pins on the map for each location in
+  //pinPoster(locations) creates pins on the map for each location in
   // the locations array
   pinPoster(locations);
 
@@ -235,11 +251,11 @@ Uncomment the code below when you're ready to implement a Google Map!
 */
 
 // Calls the initializeMap() function when the page loads
-//window.addEventListener('load', initializeMap);
+window.addEventListener('load', initializeMap);
 
 // Vanilla JS way to listen for resizing of the window
 // and adjust map bounds
-//window.addEventListener('resize', function(e) {
+window.addEventListener('resize', function(e) {
   //Make sure the map bounds get updated on page resize
-//  map.fitBounds(mapBounds);
-//});
+map.fitBounds(mapBounds);
+});

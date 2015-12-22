@@ -99,6 +99,13 @@ a {
   line-height: 28px;
 }
 
+#skills{
+  display: -webkit-flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+
+}
+
 #skills-h3 {
   color: #f5ae23;
   display: none;
